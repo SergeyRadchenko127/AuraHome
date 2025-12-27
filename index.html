@@ -3,22 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AuraHome | Final Edition</title>
+    <title>AuraHome | Personal Dashboard</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="vibe-switcher">
-        <div class="dot blue" onclick="changeVibe('linear-gradient(135deg, #8ec5fc 0%, #e0c3fc 100%)')"></div>
-        <div class="dot sunset" onclick="changeVibe('linear-gradient(135deg, #f6d365 0%, #fda085 100%)')"></div>
-        <div class="dot forest" onclick="changeVibe('linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%)')"></div>
-        <div class="dot night" onclick="changeVibe('linear-gradient(135deg, #2c3e50 0%, #000000 100%)')"></div>
+    <div class="top-controls">
+        <button id="focus-toggle" onclick="toggleFocus()">Focus Mode</button>
+        <div class="vibe-switcher">
+            <div class="dot blue" onclick="changeVibe('linear-gradient(135deg, #8ec5fc 0%, #e0c3fc 100%)')"></div>
+            <div class="dot sunset" onclick="changeVibe('linear-gradient(135deg, #f6d365 0%, #fda085 100%)')"></div>
+            <div class="dot forest" onclick="changeVibe('linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%)')"></div>
+            <div class="dot night" onclick="changeVibe('linear-gradient(135deg, #2c3e50 0%, #000000 100%)')"></div>
+        </div>
     </div>
 
     <div class="container">
         <h2 id="greeting-box">
             <span id="greeting-text">Hello</span>, 
-            <span id="user-name" contenteditable="true" title="Click to change name">Explorer</span>
+            <span id="user-name" contenteditable="true" title="Click to edit name">Explorer</span>
         </h2>
         
         <div id="clock">00:00:00</div>
@@ -36,8 +39,8 @@
         </div>
 
         <div class="news-card">
-            <div class="news-header">Latest News</div>
-            <div id="news-list">Fetching headlines...</div>
+            <div class="news-header">Latest Headlines</div>
+            <div id="news-list">Fetching world news...</div>
         </div>
 
         <div id="weather">Krakow: --°C</div>

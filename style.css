@@ -1,5 +1,3 @@
-/* All previous styles stay, but update these specific classes: */
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
 
 body {
@@ -11,7 +9,7 @@ body {
     font-family: 'Inter', sans-serif;
     background: linear-gradient(135deg, #8ec5fc 0%, #e0c3fc 100%);
     color: #2d3436;
-    transition: background 0.8s ease;
+    transition: background 0.8s ease, color 0.5s ease;
 }
 
 .container {
@@ -21,47 +19,88 @@ body {
     border-radius: 40px;
     backdrop-filter: blur(15px);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
-    width: 90%; /* Responsive width */
+    width: 90%;
     max-width: 450px;
     animation: fadeIn 1.2s ease-out;
+    transition: all 0.5s ease;
 }
 
-/* Editable Name Style */
-#user-name {
-    border-bottom: 1px dashed rgba(0,0,0,0.2);
-    cursor: pointer;
-    outline: none;
-    transition: 0.3s;
-}
+/* Editable Name */
+#user-name { border-bottom: 1px dashed rgba(0,0,0,0.2); outline: none; cursor: text; }
+#user-name:focus { background: rgba(255,255,255,0.3); border-radius: 5px; }
 
-#user-name:focus {
-    border-bottom: 1px solid #2d3436;
-    background: rgba(255,255,255,0.2);
-    border-radius: 4px;
-}
-
-/* Previous components below stay the same */
-#greeting-box { font-weight: 300; font-size: 1.2rem; margin-bottom: -10px; opacity: 0.8; }
+#greeting-box { font-weight: 300; font-size: 1.2rem; opacity: 0.8; margin-bottom: 5px; }
 #clock { font-size: clamp(3rem, 10vw, 4.5rem); font-weight: 600; letter-spacing: -2px; margin: 10px 0; }
-.quote-container { height: 90px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; border-left: 3px solid rgba(255, 255, 255, 0.3); padding: 0 20px; }
+
+.quote-container {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    padding: 0 20px;
+    border-left: 3px solid rgba(255, 255, 255, 0.3);
+}
+
 #quote { font-style: italic; font-weight: 300; font-size: 0.95rem; line-height: 1.4; margin: 0; }
-.timer-container { background: rgba(255, 255, 255, 0.2); padding: 20px; border-radius: 25px; margin-bottom: 25px; }
+
+.timer-container {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 25px;
+    margin-bottom: 25px;
+}
+
 #timer-display { font-size: 2.5rem; font-weight: 600; margin-bottom: 10px; }
-button { background: #2d3436; color: white; border: none; padding: 10px 25px; border-radius: 12px; cursor: pointer; font-weight: 500; transition: 0.3s; margin: 0 5px; }
-button:hover { transform: scale(1.05); }
-.news-card { background: rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 15px; text-align: left; margin-bottom: 20px; border: 1px solid rgba(255, 255, 255, 0.2); }
+
+/* News Styling */
+.news-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 15px;
+    text-align: left;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
 .news-header { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; opacity: 0.5; }
-#news-list { max-height: 110px; overflow-y: auto; font-size: 0.85rem; }
-.news-item { margin-bottom: 8px; }
+#news-list { max-height: 100px; overflow-y: auto; font-size: 0.85rem; }
+.news-item { margin-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 4px; }
 .news-item a { text-decoration: none; color: inherit; }
-.vibe-switcher { position: absolute; top: 20px; right: 20px; display: flex; gap: 10px; }
-.dot { width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid #fff; }
+
+/* Controls */
+.top-controls { position: absolute; top: 20px; right: 20px; display: flex; align-items: center; gap: 20px; }
+.vibe-switcher { display: flex; gap: 10px; }
+.dot { width: 20px; height: 20px; border-radius: 50%; cursor: pointer; border: 2px solid #fff; }
 .blue { background: linear-gradient(135deg, #8ec5fc, #e0c3fc); }
 .sunset { background: linear-gradient(135deg, #f6d365, #fda085); }
 .forest { background: linear-gradient(135deg, #d4fc79, #96e6a1); }
 .night { background: linear-gradient(135deg, #2c3e50, #000000); }
+
+button {
+    background: #2d3436;
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+button:hover { opacity: 0.8; transform: scale(1.02); }
+
+/* Night/Dark Mode */
 .dark-mode { color: white; }
-.dark-mode .container { background: rgba(0, 0, 0, 0.3); }
-.dark-mode #user-name { border-bottom-color: rgba(255,255,255,0.4); }
-#weather { font-size: 0.8rem; opacity: 0.6; }
+.dark-mode .container { background: rgba(0, 0, 0, 0.4); }
+.dark-mode button { background: white; color: black; }
+
+/* FOCUS MODE LOGIC */
+.focus-active .news-card, 
+.focus-active .quote-container,
+.focus-active #weather { display: none; }
+.focus-active .container { padding: 4rem 2rem; max-width: 350px; }
+
+#weather { font-size: 0.8rem; opacity: 0.6; margin-top: 10px; }
+
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
